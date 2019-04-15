@@ -1,0 +1,24 @@
+{
+  "name": "hsr_jarvis",
+  "version": "1.0.0",
+  "description": "Control hsr with alexa",
+  "main": "index_hsr.js",
+  "author": "Abhishek, Victoria, Brent",
+  "dependencies": {
+    "alexa-sdk": "^1.0.10",
+    "bespoken-tools": "^2.1.2",
+    "bluebird": "^2.9.34",
+    "body-parser": "^1.18.3",
+    "ejs": "~0.7.1",
+    "eventemitter2": "^4.1.0",
+    "express": "^4.16.4",
+    "hotswap": "^1.1.0",
+    "lodash.defaults": "^4.2.0",
+    "prompt": "^1.0.0",
+    "roslib": "^0.20.0",
+    "system-sleep": "^1.3.6"
+  },
+  "devDependencies": {
+    "supervisor": "^0.6.0"
+  }
+}

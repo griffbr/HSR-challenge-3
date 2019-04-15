@@ -1,0 +1,43 @@
+<launch>
+
+<node pkg="war_machine" name="bullseye_obstacle_ignoring" type="bullseye.py" output="screen"></node>
+
+<arg name="map_file" default="$(find war_machine)/open_door_map.yaml"/>
+
+<node pkg="rostopic" type="rostopic" name="lab_map_file_pub" args="pub /lab_map_file std_msgs/String '$(arg map_file)'" output="screen"/>
+
+<node name="lab_map_server" pkg="map_server" type="map_server" args="$(arg map_file)" output="screen">
+    <remap from="map" to="lab_map"/>
+    <param name="frame_id" value="lab_map"/>
+</node>
+
+<arg name="robot_init_x" default="0"/>
+<arg name="robot_init_y" default="0"/>
+<arg name="robot_init_phi" default="0"/>
+
+<node pkg="amcl" type="amcl" name="lab_localization">
+        <remap from="scan" to="hsrb/base_scan" />
+        <remap from="map" to="lab_map" />
+        <param name="tf_broadcast" value="false"/>
+
+        <param name="odom_model_type" value="omni-corrected"/>
+	<param name="save_pose_rate" value="-1.0"/>
+	<param name="max_particles" value="8000"/>
+        <param name="update_min_d" value="0.005"/>
+        <param name="update_min_a" value="0.005"/>
+
+        <param name="initial_pose_x" value="$(arg robot_init_x)"/>
+        <param name="initial_pose_y" value="$(arg robot_init_y)"/>
+        <param name="initial_pose_a" value="$(arg robot_init_phi)"/>
+	<param name="initial_cov_xx" value ="1"/>
+        <param name="initial_cov_yy" value ="1"/>
+        <param name="initial_cov_aa" value ="9.86"/>
+         
+        <param name="odom_alpha1" value="0.005"/>
+        <param name="odom_alpha2" value="0.005"/>
+        <param name="odom_alpha3" value="0.010"/>
+        <param name="odom_alpha4" value="0.005"/>
+        <param name="odom_alpha5" value="0.003"/>
+	
+</node>
+</launch>
