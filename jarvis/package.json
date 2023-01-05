@@ -6,7 +6,7 @@
   "author": "Abhishek, Victoria, Brent",
   "dependencies": {
     "alexa-sdk": "^1.0.10",
-    "bespoken-tools": "^2.1.2",
+    "bespoken-tools": "^2.6.5",
     "bluebird": "^2.9.34",
     "body-parser": "^1.18.3",
     "ejs": "~0.7.1",
